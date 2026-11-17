@@ -1,0 +1,62 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+group = project.mod_group_id
+version = project.mod_version
+base {
+    archivesName = 'DistractionFreeRecipes-Rebuilt-neoforge-' + project.minecraft_version
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+repositories {
+    maven { url = 'https://api.modrinth.com/maven' }
+    maven { url = 'https://maven.blamejared.com/' }
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+            gameDirectory = project.file('run')
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // Optional viewers: compile-time only; users do not need both installed.
+    compileOnly "maven.modrinth:emi:1.1.24+1.21.1+neoforge"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge:19.64.0.455"
+
+    // Available in the development run only; not bundled into the output JAR.
+    localRuntime "maven.modrinth:emi:1.1.24+1.21.1+neoforge"
+    localRuntime "mezz.jei:jei-1.21.1-neoforge:19.64.0.455"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: project.version
+    }
+}

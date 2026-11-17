@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.rebuilt.dfr.mixin.jei",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "JeiIngredientListOverlayMixin",
+    "JeiSearchFieldOpacityMixin",
+    "JeiIconButtonMixin",
+    "JeiIconButtonInputMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

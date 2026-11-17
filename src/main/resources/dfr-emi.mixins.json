@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.rebuilt.dfr.mixin.emi",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "EmiSidebarPanelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

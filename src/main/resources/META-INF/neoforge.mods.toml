@@ -1,0 +1,54 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "distraction_free_recipes"
+version = "${version}"
+displayName = "Distraction Free Recipes Rebuilt"
+logoFile = "icon.png"
+logoBlur = false
+authors = "heeyyooy"
+displayTest = "IGNORE_ALL_VERSION"
+description = '''
+A client-side NeoForge mod that hides EMI or JEI recipe lists while the search field is empty and can hide the empty EMI Favorites sidebar.
+'''
+
+[[dependencies.distraction_free_recipes]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.distraction_free_recipes]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.distraction_free_recipes]]
+modId = "emi"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.distraction_free_recipes]]
+modId = "jei"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[mixins]]
+config = "dfr-common.mixins.json"
+
+[[mixins]]
+config = "dfr-emi.mixins.json"
+requiredMods = ["emi"]
+
+[[mixins]]
+config = "dfr-jei.mixins.json"
+requiredMods = ["jei"]
